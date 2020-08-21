@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Join It form</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+/* RESET RULES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+:root {
+  --white: #afafaf;
+  --red: #e31b23;
+  --bodyColor: #292a2b;
+  --borderFormEls: hsl(0, 0%, 10%);
+  --bgFormEls: hsl(0, 0%, 14%);
+  --bgFormElsFocus: hsl(0, 7%, 20%);
+}
+
+.my-form {
+  width: 800px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+
+* {
+  padding: 1px;
+  margin: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+a {
+  color: inherit;
+}
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: 100%;
+}
+button,
+label {
+  cursor: pointer;
+}
+select {
+  appearance: none;
+}
+select::-ms-expand {
+  display: none;
+}
+select:-moz-focusring {
+  color: transparent !important;
+  text-shadow: 0 0 0 var(--white);
+}
+
+textarea {
+  resize: none;
+}
+ul {
+  list-style: none;
+}
+
+body {
+  font: 18px/1.5 "Open Sans", sans-serif;
+  
+  background: url('https://images.unsplash.com/photo-1561214078-f3247647fc5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60');
+  background-repeat: no-repeat;
+        background-attachment: fixed;
+  background-size: cover;
+  color: var(--white);
+  margin: 1.5rem 0;
+}
+.container {
+  background: var(--bodyColor);;
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+/* FORM ELEMENTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.btn {
+	 border: 3px solid #1a1a1a;
+	 display: inline-block;
+	 padding: 10px;
+	 position: relative;
+	 text-align: center;
+	 transition: background 600ms ease, color 600ms ease;
+}
+ input[type="radio"].toggle {
+	 display: none;
+}
+ input[type="radio"].toggle + label {
+	 cursor: pointer;
+	 min-width: 60px;
+}
+ input[type="radio"].toggle + label:hover {
+	 background: none;
+	 color: #1a1a1a;
+}
+ input[type="radio"].toggle + label:after {
+	 background: #1a1a1a;
+	 content: "";
+	 height: 100%;
+	 position: absolute;
+	 top: 0;
+	 transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
+	 width: 100%;
+	 z-index: -1;
+}
+ input[type="radio"].toggle.toggle-left + label {
+	 border-right: 0;
+}
+ input[type="radio"].toggle.toggle-left + label:after {
+	 left: 100%;
+}
+ input[type="radio"].toggle.toggle-right + label {
+	 margin-left: -5px;
+}
+ input[type="radio"].toggle.toggle-right + label:after {
+	 left: -100%;
+}
+ input[type="radio"].toggle:checked + label {
+	 cursor: default;
+	 color: #fff;
+	 transition: color 200ms;
+}
+ input[type="radio"].toggle:checked + label:after {
+	 left: 0;
+}
+
+
+hr {
+  border: 1px solid #000000;
+  margin-bottom: 25px;
+}
+.my-form h1 {
+  margin-bottom: 1.5rem;
+}
+
+.my-form li,
+.my-form .grid > *:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.my-form select,
+.my-form input,
+.my-form textarea,
+.my-form button {
+  width: 100%;
+  line-height: 1.5;
+  padding: 15px 10px;
+  border: 1px solid var(--borderFormEls);
+  color: var(--white);
+  background: var(--bgFormEls);
+  transition: background-color 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25),
+    transform 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+}
+.my-form textarea {
+  height: 170px;
+}
+.my-form ::placeholder {
+  color: inherit;
+  /*Fix opacity issue on Firefox*/
+  opacity: 1;
+}
+.my-form select:focus,
+.my-form input:focus,
+.my-form textarea:focus,
+.my-form button:enabled:hover,
+.my-form button:focus,
+.my-form input[type="checkbox"]:focus + label {
+  background: var(--bgFormElsFocus);
+}
+
+.my-form select:focus,
+.my-form input:focus
+.my-form textarea:focus {
+  transform: scale(1.02);
+}
+
+.my-form *:required,
+.my-form select {
+  background-repeat: no-repeat;
+  background-position: center right 12px;
+  background-size: 15px 15px;
+}
+
+.my-form *:required {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/asterisk.svg);  
+}
+
+.my-form select {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/down.svg);
+}
+
+.my-form *:disabled {
+  cursor: default;
+  filter: blur(2px);
+}
+/* FORM BTNS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.my-form .required-msg {
+  display: none;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/asterisk.svg)
+    no-repeat center left / 15px 15px;
+  padding-left: 20px;
+}
+
+.my-form .btn-grid {
+  position: relative;
+  overflow: hidden;
+  transition: filter 0.2s;
+}
+
+.my-form button {
+  font-weight: bold;
+}
+
+.my-form button > * {
+  display: inline-block;
+  width: 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.my-form button .back {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-110%, -50%);
+}
+
+.my-form button:enabled:hover .back,
+.my-form button:focus .back {
+  transform: translate(-50%, -50%);
+}
+
+.my-form button:enabled:hover .front,
+.my-form button:focus .front {
+  transform: translateX(110%);
+}
+/* CUSTOM CHECKBOX
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.my-form input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+
+.my-form input[type="checkbox"] + label {
+  position: relative;
+  display: inline-block;
+  padding-left: 2rem;
+  transition: background 0.3s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+}
+
+.my-form input[type="checkbox"] + label::before,
+.my-form input[type="checkbox"] + label::after {
+  content: '';
+  position: absolute;
+}
+
+.my-form input[type="checkbox"] + label::before {
+  left: 0;
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--white);
+}
+
+.my-form input[type="checkbox"]:checked + label::before {
+  background: var(--red);
+}
+
+.my-form input[type="checkbox"]:checked + label::after {
+  left: 7px;
+  top: 7px;
+  width: 6px;
+  height: 14px;
+  border-bottom: 2px solid var(--white);
+  border-right: 2px solid var(--white);
+  transform: rotate(45deg);
+}
+/* MQ
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media screen and (min-width: 600px) {
+  .my-form .grid {
+    display: grid;
+    grid-gap: 1.5rem;
+  }
+
+  .my-form .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .my-form .grid-3 {
+    grid-template-columns: auto auto auto;
+    align-items: center;
+  }
+
+  .my-form .grid > *:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  .my-form .required-msg {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 541px) {
+  .my-form input[type="checkbox"] + label::before {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .my-form input[type="checkbox"]:checked + label::after {
+    top: 3px;
+  }
+}
+  </style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<form class = 'my-form' action="index.html">
+  <div class="container">
+    <h1>Register!</h1>
+    <p>Please fill in this form and become a member.</p>
+    <hr>
+    <ul>
+      <li>
+        <div class="grid grid-2">
+          <input type="text" placeholder="Name" required>  
+          <input type="text" placeholder="Surname" required>
+        </div>
+      </li>
+      <li>
+        <div class="grid grid-2">
+          <input type="email" placeholder="Email" required>  
+          <input type="tel" placeholder="Phone" required>
+        </div>
+      </li>
+      <li>
+        <input type="address" placeholder="Address" required>
+      </li>
+      <li>
+        <label> Gender : </label>
+        <input id="toggle-on" class="toggle toggle-left" name="toggle" value="false" type="radio" checked>
+        <label for="toggle-on" class="btn">Male</label>
+        <input id="toggle-off" class="toggle toggle-right" name="toggle" value="true" type="radio">
+        <label for="toggle-off" class="btn">Female</label>
+        </li>
+      <li>
+        <input type="number" placeholder="Age" required>
+      </li>
+      <hr>
+      <li>
+      <select>
+        <option selected disabled>-- Please select a plan --</option>
+        <option>INR 400/week</option>
+        <option>INR 1100/month</option>
+        <option>INR 10800/year</option>      
+      </select>
+      </li>
+      <li>
+        <textarea placeholder="Message"></textarea>
+      </li>
+      <li>
+      <p>
+        *I realize that my answers to the above questions will be considered by Power Life Fitness in determining whether I shall be permitted to participate in certain programs offered.<br>
+I certify that my answers are true and correct and in the event that any answers should prove to be untrue,<br> I release Power Life Fitness from any and all liability, loss cost, damage and expenses resulting from its reliance thereof.
+      </p>
+      </li>
+      <li>
+        <input type="checkbox" id="terms">
+        <label for="terms">I have read and agreed with the terms and conditions.</label>
+      </li>
+      <li>
+      <div class="grid grid-3">
+        <div class="required-msg">REQUIRED FIELDS</div>
+          <button class="btn-grid" type="submit" disabled>
+            <span class="back">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/email-icon.svg" alt="">
+            </span>
+            <span class="front"><a href="checkout.html">SUBMIT</a></span>
+          </button>
+          <button class="btn-grid" type="reset" disabled>
+            <span class="back">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/eraser-icon.svg" alt="">
+            </span>
+            <span class="front">RESET</span>
+          </button> 
+        </div>
+      </li>
+      <hr>
+    </ul>
+</form>
+<!-- partial -->
+  <script>
+    const checkbox = document.querySelector('.my-form input[type="checkbox"]');
+const btns = document.querySelectorAll(".my-form button");
+
+checkbox.addEventListener("change", function() {
+  const checked = this.checked;
+  for (const btn of btns) {
+    checked ? (btn.disabled = false) : (btn.disabled = true);
+  }
+});
+  </script>
+
+</body>
+</html>
